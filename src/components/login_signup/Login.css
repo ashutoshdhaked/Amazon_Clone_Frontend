@@ -1,0 +1,63 @@
+.formbody{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.formblock{
+    border: 2px solid black;
+     text-align: center;
+}
+.formdata{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.forminp{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 10px;
+   padding: 10px;
+   justify-content: center;
+}
+.forminp input{
+    margin-left: 20px;
+    height: 35px;
+    padding-left: 10px;
+    border: 1px solid black;
+}
+.loginbtn{
+    all: unset;
+    margin-left: 20px;
+    margin-top: 15px;
+    font-size: 20px;
+    background-color: rgb(11, 11, 159);
+    padding: 10px;
+    color: #fff; 
+}
+.loginbtn:hover{
+    background-color: rgb(59, 59, 190)
+}
+
+.option{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: aliceblue;
+}
+.option button{
+    margin: 10px;
+    padding: 3px;
+}
+.option a:hover{
+    color: red;
+}
+.icon{
+    font-size: 20px;
+}
+.icon_f{
+    color: blue;
+    font-size: 20px;
+}

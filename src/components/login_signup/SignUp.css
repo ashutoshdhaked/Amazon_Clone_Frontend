@@ -1,0 +1,47 @@
+.boxbody{
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sineup_form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px;
+    font-size: 25px;
+}
+.sineup_form input{
+    height: 35px;
+    padding-left: 10px;
+} 
+
+.sineup_form select{
+    height: 35px;
+    padding-left: 10px;
+} 
+.sineup_form p{
+    text-align: left;
+    color: red;
+    font-size: 15px;
+}
+.sineup_form button{
+    all: unset;
+    background-color: rgb(11, 11, 159);
+    color: #fff;
+    padding: 5px;
+}
+.sineup_form button:hover{
+    background-color: rgb(59, 59, 190)
+}
+
+.error-border {
+    border: 1px solid rgb(117, 0, 0);
+}
+.error_box{
+    border: 1px solid rgb(117, 0, 0);
+    background-color: rgb(248, 195, 195);
+    text-align: left;
+    padding: 20px ;
+}

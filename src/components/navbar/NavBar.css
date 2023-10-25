@@ -1,0 +1,85 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    color: #ffff;
+}
+.left{
+    display: flex;
+    align-items: center;
+    width: 60%;
+    justify-content: space-between;
+    margin-left: 40px;
+    gap: 40px;
+}
+.nav_serchbar {
+    display: flex;
+    align-items: center;
+}
+.inputserach{
+    width: 500px;
+    height: 35px;
+    border-bottom-left-radius: 7px;
+    border-top-left-radius: 7px;
+    border-top-right-radius:0px ;
+    border-bottom-right-radius: 0px;
+    font-size: 20px;
+}
+.serach_icon{
+    background-color: orange;
+    height: 30.5px;
+    padding: 3px;
+    font-size: 25px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.navlogo img{
+    width:auto;
+    height: 60px;
+}
+.right{
+     width: 20%;
+    display: flex;
+    margin-right: 50px;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffff;
+}
+
+.nav_btn a {
+  text-decoration: none;
+  color: #ffff;
+  margin: 20px;
+}
+
+.nav_btn a:hover{
+  border: 1px #ffff;  
+  color: red;
+} 
+.cart_btn {
+    display: flex;
+    align-items: center;
+}
+.item_num{
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    color: #ffff;
+    text-align: center;
+    border-radius: 50%;
+}
+#cart{
+    font-size: 30px;
+}
+.profileimage img{
+    width: auto;
+    height: 40px;
+    border-radius: 50%;
+
+} 
+

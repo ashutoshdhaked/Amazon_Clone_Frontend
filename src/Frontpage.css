@@ -1,0 +1,11 @@
+*{
+    margin: 0%;
+    padding: 0%;
+  }
+  .home{
+    /* overflow-y: hidden; */
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  
+  
