@@ -1,13 +1,18 @@
-import './Login.css'
+import './Login.css';
 import {useState} from 'react';
 import {FcGoogle} from 'react-icons/fc';
 import {SiFacebook} from 'react-icons/si';
+import {useNavigate} from 'react-router-dom';
+
 const Login = ()=>{
+  const Navigate = useNavigate();
+
  const startingstate = {
     email:"",
     password:""
  }
  const [data , setdata] = useState(startingstate);
+ const [error , seterror] = useState(false);
  function handleInputChange(e){
     const {name,value} = e.target;
     setdata(prestate=>({
@@ -26,21 +31,24 @@ const Login = ()=>{
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({data})
+      body: JSON.stringify(data)
     }
-    const user = await fetch('http://localhost:8085/user/loginuser',option);
-    if(user.status===200){
-       
-      
+    const response = await fetch('http://localhost:8085/user/loginuser',option);
+    const user = await response.json();
+    if(response.status===200){
+      console.log("ok");
+       const  token  = user.token;
+       sessionStorage.setItem('token', token);
+     if(user.data.usertype==="shopkeeper"){
+         Navigate("/shopkeeper");        
+     }
+     else if(user.data.usertype==="normaluser"){
+         Navigate("/normaluser"); 
+     }
     }
-    if(user.status===404){
-      console.log("incorrect password !!");
-    }
-    else{
-      console.log("internal server error");
-    }
-
-        
+   else{
+         seterror(true);
+     }        
   }
 
     return(
@@ -52,9 +60,15 @@ const Login = ()=>{
                 </div>
                 <hr></hr>
                 <div className='formdata'>
+                   {
+                          error ? <div className='error_box'>
+                          <h2 style={{color:"red"}}>Error !!</h2>
+                          <p style={{color:"red"}}>Invalid email and password</p>
+                        </div>:" "             
+                       }
                      <form className='forminp' onSubmit={submit}>
-                         <input type="email" placeholder='email' name="email" value={data.email} onChange={handleInputChange} required/>
-                         <input type="password" placeholder='password' name="password" value={data.password} onChange={handleInputChange} required/>
+                         <input type="email" placeholder='email' name="email" value={data.email} onChange={handleInputChange} className={error ? 'red_border':''} required/>
+                         <input type="password" placeholder='password' name="password" value={data.password} onChange={handleInputChange} className={error ? 'red_border':''} required/>
                          <button className='loginbtn' type='submit'>Login</button>
                      </form>
                      <hr></hr>

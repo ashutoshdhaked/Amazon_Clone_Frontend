@@ -1,0 +1,17 @@
+.image_s{
+    width: auto;
+    height: 50px;
+}
+.effect:hover {
+   color: blue;
+}
+.p_section{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.image_p{
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
+}

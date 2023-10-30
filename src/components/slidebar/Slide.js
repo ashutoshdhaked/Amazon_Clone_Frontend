@@ -26,7 +26,7 @@ const Slide = ()=>{
         <hr></hr>
         <div className='carousel_body'>
         <div className='carousel_item'> 
-        { data.map((item,index)=>{
+        { (data.length!== 0) ?data.map((item,index)=>{
             return(
          <div key={index} className='carousel_data'>
           <img src={item.url} alt={`image :+${item.url}`}/>
@@ -34,7 +34,7 @@ const Slide = ()=>{
           <p>{item.longtitle}</p>
          </div>
         )})
-          }
+          :''}
         </div>
         </div>
         </div>

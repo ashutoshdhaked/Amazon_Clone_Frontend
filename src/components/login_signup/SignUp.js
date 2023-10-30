@@ -60,13 +60,9 @@ const SignUp = ()=>{
       }
     
       const user = await response.json();
-       if(user.usertype==='shopkeeper'){
+       if(user.usertype==='shopkeeper' || user.usertype==='normaluser'){
         setRedirect(true);
-         setpath("/shopkeeper");
-       }
-       else if(user.usertype==='normaluser'){
-        setRedirect(true);
-         setpath("/normaluser");
+         setpath("/login");
        }
        else{
         setRedirect(false);
