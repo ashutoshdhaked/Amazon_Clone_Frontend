@@ -26,11 +26,11 @@ function ResetPassword(){
         console.log("token : "+token);
         const user = await fetch('http://localhost:8085/user/updatepassword',option);
         if(user.status===200){
-         await toast.success("Your password is successfully changed");
+         toast.success("Your password is successfully changed");
          Navigate("/login");
         }
         else{
-          await toast.error("Invalid Access");
+          toast.error("Invalid Access");
           Navigate("/signup");
         }
       }

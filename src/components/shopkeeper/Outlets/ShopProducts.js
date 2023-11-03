@@ -26,12 +26,18 @@ async function fetchData(){
      }   
 }
 
-function aboutRedirect(item){
-    const itemString = JSON.stringify(item);
-    alert("sending data like : "+item);
+function order(id){
+    const itemString = JSON.stringify(id);
+    Navigate(`/shopkeeper/order?data=${encodeURIComponent(itemString)}`);
+   }
+
+
+function aboutRedirect(id){
+    const itemString = JSON.stringify(id);
     Navigate(`/shopkeeper/aboutcard?data=${encodeURIComponent(itemString)}`);
    }
 
+   
 useEffect(()=>{
     fetchData();
 })
@@ -47,15 +53,15 @@ useEffect(()=>{
                         </div>
                         <Card.Body>
                             <Card.Title>{item.shorttitle}</Card.Title>
-                            <Card.Text>{item.longtitle}</Card.Text>
-                            <Card.Text className='text_p'>
-                                    <p>MRP: <strike> {item.mrp}</strike></p>
-                                    <p>Discount: {item.discount}</p>
-                            </Card.Text>
-                            <p>cost : {item.cost}</p>
+                            <Card.Text className="mb-4" style={{ height: '50px', overflow: 'hidden' }} >{item.longtitle}</Card.Text>
+                            <div className="mb-4" style={{display :'flex',fontSize :'15px',color:'blue',alignItems:'center',gap:'5px', justifyContent:'space-around'}}>
+                            <div style={{width :'70px', height:'auto'}}> MRP: <br></br><strike> {item.mrp}</strike></div>
+                            <div style={{width :'70px', height:'auto'}}> Discount:<br></br>{item.discount}%</div>
+                            <div style={{width :'70px', height:'auto'}}>cost:<br></br>{item.cost}</div>
+                            </div>
                             <div className='buttons_b'>
-                                <Button  className="mr-2">Buy Now</Button>
-                                 <Button  onClick={()=>{aboutRedirect(item)}}>About More</Button> 
+                                 <Button  className="mr-2" onClick={()=>{order(item._id)}}>Buy Now</Button>
+                                 <Button  onClick={()=>{aboutRedirect(item._id)}}>About More</Button> 
                                 {/* <Button  onClick={updatecard}>Update</Button> */}
                             </div>
                         </Card.Body>
@@ -64,7 +70,8 @@ useEffect(()=>{
                         </Card.Footer>
                     </Card>
                 </Col>
-            )):"<h1>No Products Avalilabe</h1>" }
+            )):<h1 style={{ fontSize:'40px',textAlign:"center",color:"green", width:'100%'
+        }}>No Product Avalilable</h1>}
         </Row>
         </div>
     )

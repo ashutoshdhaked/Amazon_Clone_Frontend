@@ -17,7 +17,8 @@ function Shopkeeper() {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
-            }
+            },
+            body :JSON.stringify({})
         };
         const response = await fetch('http://localhost:8085/userportal/home', options);
         const userType = await response.json();

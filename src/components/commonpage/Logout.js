@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 const Logout = ()=>{
   const Navigate = useNavigate();
  useEffect(()=>{
-    sessionStorage.removeItem('token');
+    console.log('navigate');
+    // sessionStorage.removeItem('token');
+    // sessionStorage.removeItem('userdata');
     Navigate('/login');
  })   
     return(

@@ -38,7 +38,9 @@ const Login = ()=>{
     if(response.status===200){
       console.log("ok");
        const  token  = user.token;
+       const userdata = user.data;
        sessionStorage.setItem('token', token);
+       sessionStorage.setItem('userdata', JSON.stringify(userdata));
      if(user.data.usertype==="shopkeeper"){
          Navigate("/shopkeeper");        
      }

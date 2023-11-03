@@ -2,8 +2,12 @@ import {AiOutlineSearch} from 'react-icons/ai';
 import {MdOutlineShoppingCart} from 'react-icons/md';
 import {NavLink} from 'react-router-dom';
 import './NavBar.css'; 
+import { useEffect } from 'react';
 function NavBar(){
 
+    useEffect(()=>{
+        localStorage.setItem('cartitem',JSON.stringify([]));
+    },[])
     return(
         <header>
             <nav className='nav'>
