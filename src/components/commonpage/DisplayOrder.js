@@ -1,42 +1,69 @@
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
-import { useEffect ,useState} from 'react';
+import {useSelector,useDispatch} from 'react-redux';
+import {cancelOrder,confirmOrder} from '../../features/OrderFeature/Cancel_ConfirmOreder';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {useEffect ,useState} from 'react';
 const DisplayOrder = ()=>{
    const [items,setitems]=useState([]);
    const [state,setstate] = useState('pending');
+   let allOrderState =[];
+   const dispatch = useDispatch();
+   const orderstate = useSelector(state => state.orderfeature.condition);
+   console.log("array is : ",orderstate);
+    if(orderstate){
+      allOrderState = orderstate;
+    }
+
   async function fetchOrders(){
-         const response = await fetch('http://localhost:8085/order/getpendingorder');
+         const response = await fetch('http://localhost:8085/order/getpendingorder'); 
          if(response.status===200){
             const oreders = await response.json();
             setitems(oreders);
          }
-         else{
+         else{ 
             console.log("Internal server error !!");
          }
   }
+
    useEffect(()=>{
      fetchOrders();
    },[])
   
-     function cancleOrder(id){
-    // here we are cancle the order
-    setstate('cancle');
-    setStatus(id);     
+     function cancle(id,index){
+    const value = 'cancel';   
+    dispatch(cancelOrder({ id:id,index:index,text:value}));
+    setstate("cancle");
+    setStatusDB(id, {status:"cancel"});
    }
 
-    function confirmOrder(id){
-    // here we are confirm the order items
-    setstate('confirm'); 
-    setStatus(id);
-
-   }
-
-   async function setStatus(id){
-   const response =  await fetch(`http://localhost:8085/order/updatestatus/${id}`);
+    function confirm(id,index){
+    const value = 'confirm';   
+     dispatch(confirmOrder({id:id, index:index ,text:value}));
+     setstate("confirm");
+    setStatusDB(id, {status:"confirm"});
 
    }
 
+   async function setStatusDB(id,statusValue){
+    const option ={
+      method :'POST',
+      headers: {
+        'Content-Type': 'application/json', 
+      },
+      body : JSON.stringify(statusValue),
+    }
 
+    console.log("id and status : ",id ,statusValue);
+   const response =  await fetch(`http://localhost:8085/order/updatestatus/${id}`,option);
+   if(response.status===200){
+     toast.success("your have confirm the oreder");
+   }
+   else{
+    toast.error("You have cnacle the Order ");
+   }
+   }
 
     return(
             <>
@@ -44,14 +71,16 @@ const DisplayOrder = ()=>{
       return (
         <div style={{margin:'20px', backgroundColor:'#000',padding:'20px',color:'#fff'}}>
             <div>
-                <div style={{display:'flex' , alignItems:'center',justifyContent:'space-between'}}> 
-                       <h5>Total Amount :&nbsp;&nbsp;&#8377;&nbsp;{data.amount}</h5>
-                        <p>Status :&nbsp;&nbsp;<small className=''>{data.status}</small></p>
-                       <div style={{display:'flex',gap:'10px'}}>
-                       <Button variant="danger" onClick={()=>{cancleOrder(data._id)}}>Cancle Order</Button>
-                       <Button variant="success" onClick={()=>{confirmOrder(data._id)}}>Confirm Order</Button>
-                       </div>
-                </div>
+              <ToastContainer/>
+            <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}> 
+    <h5>Total Amount :&nbsp;&nbsp;&#8377;&nbsp;{data.amount}</h5>
+    <p>Status :&nbsp;&nbsp;<small style={{color:'blue'}} >{allOrderState && allOrderState[i] && allOrderState[i].status ? allOrderState[i].status : 'pending' }</small></p>
+    <div style={{display:'flex', gap:'10px'}}>
+        <Button variant="danger" onClick={()=>{cancle(data._id,i)}} disabled={allOrderState && allOrderState[i] && allOrderState[i].status==='cancel' ? allOrderState[i].disabled : ''}>Cancel Order</Button>
+        <Button variant="success" onClick={()=>{confirm(data._id,i)}} disabled={allOrderState && allOrderState[i] && allOrderState[i].status==='confirm' ? allOrderState[i].disabled : ''}>Confirm Order</Button>
+    </div>
+</div>
+
                 <div>
                     <p>Email : &nbsp;&nbsp;{data.email}</p>
                     <p>Address on : &nbsp;&nbsp;{data.address} </p>
