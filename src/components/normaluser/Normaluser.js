@@ -36,7 +36,6 @@ function Normaluser(){
     return (
         <div>
             <NormaluserNav/>
-            <h1>hello this the normal user page </h1>
             <Outlet />
         </div>
     )

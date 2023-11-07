@@ -2,12 +2,16 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useEffect ,useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import './DisplayProducts.css';
  const  DisplayProducts =()=>{
    const[data,setdata] = useState([]);  
    const Navigate = useNavigate();
+   const userdataInStorage = sessionStorage.getItem('userdata');
+   const userdata = JSON.parse(userdataInStorage);
    async function getData(){
      const response = await fetch('http://localhost:8085/product/getproducts');
      const responsedata = await response.json();
@@ -17,11 +21,27 @@ import './DisplayProducts.css';
    }
    function aboutRedirect(id){
     const itemString = JSON.stringify(id);
+    if(userdata.usertype==='shopkeeper'){
     Navigate(`/shopkeeper/aboutcard?data=${encodeURIComponent(itemString)}`);
+    }
+    else if(userdata.usertype==='normaluser'){
+        Navigate(`/normaluser/aboutcard?data=${encodeURIComponent(itemString)}`);
+    }
+    else{
+      toast.error('Somethings went to Wrong !!!');
+    }
    }
    function order(id){
     const itemString = JSON.stringify(id);
+    if(userdata.usertype==='shopkeeper'){
     Navigate(`/shopkeeper/order?data=${encodeURIComponent(itemString)}`);
+    }
+    else if(userdata.usertype==='normaluser'){
+        Navigate(`/normaluser/order?data=${encodeURIComponent(itemString)}`);
+    }
+    else{
+        toast.error('Somethings went to Wrong !!!');
+    }
    }
 
     useEffect(()=>{
@@ -31,6 +51,7 @@ import './DisplayProducts.css';
 
     return(
         <div className="dis_productsss">
+            <ToastContainer/>
             <Row xs={1} md={4} className="g-4">
                 { (data.length !== 0) ? data.map((item, index) => (
                     <Col key={index}>

@@ -14,6 +14,7 @@ import AddProduct from './components/shopkeeper/Outlets/AddProduct.js';
 import Cartitem from './components/shopkeeper/Outlets/CartItem.js';
 import Order from './components/shopkeeper/Outlets/Order.js';
 import DisplayOrder from './components/commonpage/DisplayOrder.js';
+import Profile from './components/commonpage/Profile.js';
 import './App.css';
 
 function App() {
@@ -35,8 +36,8 @@ function App() {
           <Route path="cart" element={<Cartitem/>}></Route> 
           <Route path="order" element={<Order/>}></Route>
           <Route path="displayorder" element={<DisplayOrder/>}></Route> 
-         {/*  <Route path="/shopprofile" element={""}></Route>
-          <Route path="/userprofile" element={""}></Route> 
+          <Route path="profile" element={<Profile/>}></Route>
+         {/*<Route path="/userprofile" element={""}></Route> 
           <Route path="/addproduct" element={""}></Route> */}
           <Route path="logout" element={<Logout/>}></Route>  
       </Route>
@@ -47,6 +48,7 @@ function App() {
           <Route path="cart" element={<Cartitem/>}></Route> 
           <Route path="order" element={<Order/>}></Route>
           <Route path="displayorder" element={<DisplayOrder/>}></Route>
+          <Route path="profile" element={<Profile/>}></Route>
           {/* <Route path="/products" element={""}></Route>
           <Route path="/normaluserprofile" element={""}></Route>
           <Route path="/aboutproduct" element={""}></Route>

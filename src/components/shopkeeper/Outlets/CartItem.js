@@ -9,14 +9,25 @@ import 'react-toastify/dist/ReactToastify.css';
 const Cartitem =()=>{
  const [data,setdata] = useState([]); 
  const Navigate = useNavigate();
+ const userdataInStorage = sessionStorage.getItem('userdata');
+   const userdata = JSON.parse(userdataInStorage);
+
 async function getData(){
     const products = await  JSON.parse(localStorage.getItem('cartitem'));
         setdata( products); 
 }
 function aboutRedirect(id){
     const itemString = JSON.stringify(id);
-    Navigate(`/shopkeeper/aboutcard?data=${encodeURIComponent(itemString)}`);
-   }
+    if(userdata.usertype==='shopkeeper'){
+      Navigate(`/shopkeeper/aboutcard?data=${encodeURIComponent(itemString)}`);
+    }
+    else if(userdata.usertype==='normaluser') {
+      Navigate(`/normaluser/aboutcard?data=${encodeURIComponent(itemString)}`);
+    }  
+    else{
+        toast.error('Something Went to Wrong !!!');
+    }
+}
 
 async function removeToCart(id){
     console.log('removed',id);
@@ -31,7 +42,16 @@ async function removeToCart(id){
   function oreder(){
     const id = 'cart1234';
     const itemString = JSON.stringify(id);
+    if(userdata.usertype==='shopkeeper'){
     Navigate(`/shopkeeper/order?data=${encodeURIComponent(itemString)}`);
+    }
+    else if(userdata.usertype==='normaluser') {
+        Navigate(`/normaluser/order?data=${encodeURIComponent(itemString)}`); 
+    }
+    else{
+        toast.error('Something Went to Wrong !!!');
+    }
+
    }
 
  useEffect(()=>{

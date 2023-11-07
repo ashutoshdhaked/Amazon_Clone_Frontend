@@ -30,13 +30,13 @@ const ShopkeeperNav = ()=>{
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3 ">
-                  <Link to="/shopkeeper" className='effect' style={{color:'black', textDecoration:'none'}}>Home</Link>
-                  <Link to="/shopkeeper/shopproduts" className='effect' style={{color:'black', textDecoration:'none'}}>Shop Products</Link>
-                  <Link to="#action2" className='effect' style={{color:'black', textDecoration:'none'}}>Customers</Link>
-                  <Link to="/shopkeeper/cart" className='effect' style={{color:'black', textDecoration:'none'}}>Cart Items</Link>
-                  <Link to="/shopkeeper/addproduct" className='effect'style={{color:'black', textDecoration:'none'}}>Add Product</Link>
-                  <Link to="/shopkeeper/displayorder" className='effect' style={{color:'black', textDecoration:'none'}}>Orders</Link>
-                  <Link to="#action2" className='effect' style={{color:'black', textDecoration:'none'}}>Order History</Link>
+                  <Link to="/shopkeeper" className='effect' style={{textDecoration:'none'}}>Home</Link>
+                  <Link to="/shopkeeper/shopproduts" className='effect' style={{textDecoration:'none'}}>Shop Products</Link>
+                  <Link to="#action2" className='effect' style={{textDecoration:'none'}}>Customers</Link>
+                  <Link to="/shopkeeper/cart" className='effect' style={{textDecoration:'none'}}>Cart Items</Link>
+                  <Link to="/shopkeeper/addproduct" className='effect'style={{textDecoration:'none'}}>Add Product</Link>
+                  <Link to="/shopkeeper/displayorder" className='effect'style={{textDecoration:'none'}}>Orders</Link>
+                  <Link to="#action2" className='effect'style={{textDecoration:'none'}}>Order History</Link>
                   <NavDropdown
                     title="Others"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}

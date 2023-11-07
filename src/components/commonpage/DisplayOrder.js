@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import {useEffect ,useState} from 'react';
 const DisplayOrder = ()=>{
    const [items,setitems]=useState([]);
-   const [state,setstate] = useState('pending');
    let allOrderState =[];
    const dispatch = useDispatch();
    const orderstate = useSelector(state => state.orderfeature.condition);
@@ -34,16 +33,23 @@ const DisplayOrder = ()=>{
      function cancle(id,index){
     const value = 'cancel';   
     dispatch(cancelOrder({ id:id,index:index,text:value}));
-    setstate("cancle");
     setStatusDB(id, {status:"cancel"});
+    const filteredItems = items.filter((i) => {
+      return i._id !== id;
+    });
+    setitems(filteredItems);
+    
    }
+    
 
     function confirm(id,index){
     const value = 'confirm';   
      dispatch(confirmOrder({id:id, index:index ,text:value}));
-     setstate("confirm");
     setStatusDB(id, {status:"confirm"});
-
+    const filteredItems = items.filter((i) => {
+      return i._id !== id;
+    });
+    setitems(filteredItems);
    }
 
    async function setStatusDB(id,statusValue){
@@ -65,7 +71,7 @@ const DisplayOrder = ()=>{
    }
    }
 
-    return(
+    return( 
             <>
     { items.map((data,i)=>{  
       return (
@@ -80,7 +86,6 @@ const DisplayOrder = ()=>{
         <Button variant="success" onClick={()=>{confirm(data._id,i)}} disabled={allOrderState && allOrderState[i] && allOrderState[i].status==='confirm' ? allOrderState[i].disabled : ''}>Confirm Order</Button>
     </div>
 </div>
-
                 <div>
                     <p>Email : &nbsp;&nbsp;{data.email}</p>
                     <p>Address on : &nbsp;&nbsp;{data.address} </p>

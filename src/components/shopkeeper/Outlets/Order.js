@@ -18,7 +18,8 @@ function Order (){
       phone:'',
       address:''
     });
-    let userdata  = sessionStorage.getItem('userdata');
+    const  userdataInStorage  = sessionStorage.getItem('userdata');
+    const  userdata = JSON.parse(userdataInStorage);
     const token=sessionStorage.getItem('token');
 
     async function fetchfromstorage() {
@@ -79,7 +80,6 @@ const arr = Array(items.length);   // storing all the order in this array and se
 
   function makeOrder(){
   let totalprice = 0;
-  // userdata = JSON.parse(userdata);
   for(let i=0;i<price.length;i++){
     totalprice = totalprice + price[i];
   }
@@ -110,11 +110,11 @@ async function storeOrder(){
     },
     body: JSON.stringify(arr), 
    }
-    console.log("arr is :",arr);
    const response = await fetch('http://localhost:8085/order/saveorder',option);
    if(response.status === 200){
        const responsedata = await response.json();
        toast.success("your have successfully Ordered !! "+responsedata.createdAt);
+       setUserInfo('');
    }
    else{
       toast.error("Sorry Error in order process");
@@ -141,7 +141,7 @@ function increase(index,mrp){
   setvalue(value.map((item, i) => (i === index ? item +1 : item)));
   setprice(price.map((item, i) => (i === index ? item + mrp : item)));
 }
-console.log('ite,s',items);
+
     // order with all Cards
     return(
         <div>
