@@ -23,8 +23,8 @@ const NormaluserNav = ()=>{
                    <div className='p_section'>
                       <img src="/images/defaultprofile.avif" alt='profile_image'  className='image_p'/>
                           <NavDropdown title="Username" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/normaluser/profile">Profile</NavDropdown.Item>
-                           <NavDropdown.Item href="/normaluser/logout">Logout</NavDropdown.Item>
+                            <Link to="/normaluser/profile">Profile</Link>
+                           <Link to="/normaluser/logout">Logout</Link>
                          </NavDropdown>
                    </div>
                 </Offcanvas.Title>
@@ -33,7 +33,7 @@ const NormaluserNav = ()=>{
                 <Nav className="justify-content-end flex-grow-1 pe-3 ">
                   <Link to="/normaluser" className='effect' style={{textDecoration:'none'}}>Home</Link>
                   <Link to="/normaluser/categories" className='effect' style={{textDecoration:'none'}}>Categories</Link>
-                  <Link to="/normaluser/order" className='effect'style={{textDecoration:'none'}}>Orders</Link>
+                  <Link to="/normaluser/displayorder" className='effect'style={{textDecoration:'none'}}>Orders</Link>
                   <Link to="/normaluser/cart" className='effect' style={{textDecoration:'none'}}>CartItems</Link>
                   <Link to="#action2" className='effect' style={{textDecoration:'none'}}>Order History</Link>
                   <NavDropdown

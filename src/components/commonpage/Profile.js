@@ -11,8 +11,10 @@ const Profile = ()=>{
   const userdata = JSON.parse(data);
   async function getDetails(){
       const userinfo = await fetch(`http://localhost:8085/user/getuserbyid/${userdata.id}`);
-    const jsondata =  await userinfo.json();
+    const jsondata =  await userinfo.json(); 
       setuser(jsondata[0]);
+
+      // here we are having the data and now we update the  userdata here 
   }
 
   useEffect(()=>{

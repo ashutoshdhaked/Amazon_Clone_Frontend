@@ -10,20 +10,29 @@ const DisplayOrder = ()=>{
    let allOrderState =[];
    const dispatch = useDispatch();
    const orderstate = useSelector(state => state.orderfeature.condition);
-   console.log("array is : ",orderstate);
+   const userinfo = sessionStorage.getItem('userdata');
+   const userdata = JSON.parse(userinfo);
     if(orderstate){
+      console.log("yes data is there ");
       allOrderState = orderstate;
+    } 
+     
+  async function fetchOrders(){
+        if(userdata.usertype==='shopkeeper'){
+         const response = await fetch(`http://localhost:8085/order/getpendingorder/${userdata.id}`); 
+         if(response.status===200){
+          const oreders = await response.json();
+          setitems(oreders);
+         }    
+        }
+      else if(userdata.usertype==='normaluser'){
+        const response = await fetch(`http://localhost:8085/order/getuserorders/${userdata.id}`); 
+        if(response.status===200){
+         const oreders = await response.json();
+         setitems(oreders);
+      } 
     }
 
-  async function fetchOrders(){
-         const response = await fetch('http://localhost:8085/order/getpendingorder'); 
-         if(response.status===200){
-            const oreders = await response.json();
-            setitems(oreders);
-         }
-         else{ 
-            console.log("Internal server error !!");
-         }
   }
 
    useEffect(()=>{
@@ -38,9 +47,7 @@ const DisplayOrder = ()=>{
       return i._id !== id;
     });
     setitems(filteredItems);
-    
    }
-    
 
     function confirm(id,index){
     const value = 'confirm';   
@@ -70,7 +77,7 @@ const DisplayOrder = ()=>{
     toast.error("You have cnacle the Order ");
    }
    }
-
+   console.log("orderstate :",orderstate);
     return( 
             <>
     { items.map((data,i)=>{  
@@ -81,10 +88,15 @@ const DisplayOrder = ()=>{
             <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}> 
     <h5>Total Amount :&nbsp;&nbsp;&#8377;&nbsp;{data.amount}</h5>
     <p>Status :&nbsp;&nbsp;<small style={{color:'blue'}} >{allOrderState && allOrderState[i] && allOrderState[i].status ? allOrderState[i].status : 'pending' }</small></p>
+    { userdata.usertype==='shopkeeper' ?
     <div style={{display:'flex', gap:'10px'}}>
         <Button variant="danger" onClick={()=>{cancle(data._id,i)}} disabled={allOrderState && allOrderState[i] && allOrderState[i].status==='cancel' ? allOrderState[i].disabled : ''}>Cancel Order</Button>
         <Button variant="success" onClick={()=>{confirm(data._id,i)}} disabled={allOrderState && allOrderState[i] && allOrderState[i].status==='confirm' ? allOrderState[i].disabled : ''}>Confirm Order</Button>
     </div>
+    :<div>
+      Ordered  On : {data.createdAt}
+    </div>
+    }
 </div>
                 <div>
                     <p>Email : &nbsp;&nbsp;{data.email}</p>
