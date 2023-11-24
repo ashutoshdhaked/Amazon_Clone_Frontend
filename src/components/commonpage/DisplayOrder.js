@@ -3,17 +3,19 @@ import Table from 'react-bootstrap/Table';
 import {useSelector,useDispatch} from 'react-redux';
 import {cancelOrder,confirmOrder} from '../../features/OrderFeature/Cancel_ConfirmOreder';
 import { ToastContainer, toast } from 'react-toastify';
+import DisplayOrderToNormal from '../normaluser/DisplayOrderTONormal';
 import 'react-toastify/dist/ReactToastify.css';
 import {useEffect ,useState} from 'react';
 const DisplayOrder = ()=>{
    const [items,setitems]=useState([]);
+   const [itemsOfNormal,setitemsOfNormal] = useState({});
+   const [loading ,setLoading] = useState(true);
    let allOrderState =[];
    const dispatch = useDispatch();
    const orderstate = useSelector(state => state.orderfeature.condition);
    const userinfo = sessionStorage.getItem('userdata');
    const userdata = JSON.parse(userinfo);
     if(orderstate){
-      console.log("yes data is there ");
       allOrderState = orderstate;
     } 
      
@@ -23,22 +25,23 @@ const DisplayOrder = ()=>{
          if(response.status===200){
           const oreders = await response.json();
           setitems(oreders);
+          setLoading(false);
          }    
         }
       else if(userdata.usertype==='normaluser'){
         const response = await fetch(`http://localhost:8085/order/getuserorders/${userdata.id}`); 
         if(response.status===200){
          const oreders = await response.json();
-         setitems(oreders);
+           setitemsOfNormal(oreders);
+           setLoading(false);
       } 
     }
-
   }
 
    useEffect(()=>{
      fetchOrders();
    },[])
-  
+
      function cancle(id,index){
     const value = 'cancel';   
     dispatch(cancelOrder({ id:id,index:index,text:value}));
@@ -77,7 +80,28 @@ const DisplayOrder = ()=>{
     toast.error("You have cnacle the Order ");
    }
    }
-   console.log("orderstate :",orderstate);
+
+
+   if(loading){
+    return (
+        <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+    <div>
+    <h2> please wait data is loading ...</h2>
+    </div>
+    </div>
+    )
+   }
+
+
+   if(userdata.usertype==='normaluser'){
+    console.log("itemsOfNormal :",itemsOfNormal);
+     return (
+         <div>
+           <DisplayOrderToNormal  data={itemsOfNormal}/>
+         </div>
+     )
+   }
+
     return( 
             <>
     { items.map((data,i)=>{  
@@ -88,15 +112,11 @@ const DisplayOrder = ()=>{
             <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}> 
     <h5>Total Amount :&nbsp;&nbsp;&#8377;&nbsp;{data.amount}</h5>
     <p>Status :&nbsp;&nbsp;<small style={{color:'blue'}} >{allOrderState && allOrderState[i] && allOrderState[i].status ? allOrderState[i].status : 'pending' }</small></p>
-    { userdata.usertype==='shopkeeper' ?
     <div style={{display:'flex', gap:'10px'}}>
         <Button variant="danger" onClick={()=>{cancle(data._id,i)}} disabled={allOrderState && allOrderState[i] && allOrderState[i].status==='cancel' ? allOrderState[i].disabled : ''}>Cancel Order</Button>
         <Button variant="success" onClick={()=>{confirm(data._id,i)}} disabled={allOrderState && allOrderState[i] && allOrderState[i].status==='confirm' ? allOrderState[i].disabled : ''}>Confirm Order</Button>
     </div>
-    :<div>
-      Ordered  On : {data.createdAt}
-    </div>
-    }
+    
 </div>
                 <div>
                     <p>Email : &nbsp;&nbsp;{data.email}</p>

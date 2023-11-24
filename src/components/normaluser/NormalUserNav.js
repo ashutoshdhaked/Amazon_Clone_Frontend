@@ -6,6 +6,9 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
 const NormaluserNav = ()=>{
+
+  const userinfo = sessionStorage.getItem('userdata');
+  const userdata = JSON.parse(userinfo);
     return(
         <div> 
               {[false].map((expand) => (
@@ -21,10 +24,11 @@ const NormaluserNav = ()=>{
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                    <div className='p_section'>
-                      <img src="/images/defaultprofile.avif" alt='profile_image'  className='image_p'/>
-                          <NavDropdown title="Username" id="basic-nav-dropdown">
-                            <Link to="/normaluser/profile">Profile</Link>
-                           <Link to="/normaluser/logout">Logout</Link>
+                      <img src={userdata.profile} alt='profile_image'  className='image_p' style={{width:'50px',height:'50px'}}/>
+                          <NavDropdown title={userdata.username} id="basic-nav-dropdown">
+                            <Link style={{textDecoration:'none',padding:'10px'}} to="/normaluser/profile">Profile</Link>
+                            <NavDropdown.Divider />
+                           <Link style={{textDecoration:'none',padding:'10px'}} to="/normaluser/logout">Logout</Link>
                          </NavDropdown>
                    </div>
                 </Offcanvas.Title>
@@ -35,18 +39,10 @@ const NormaluserNav = ()=>{
                   <Link to="/normaluser/categories" className='effect' style={{textDecoration:'none'}}>Categories</Link>
                   <Link to="/normaluser/displayorder" className='effect'style={{textDecoration:'none'}}>Orders</Link>
                   <Link to="/normaluser/cart" className='effect' style={{textDecoration:'none'}}>CartItems</Link>
-                  <Link to="#action2" className='effect' style={{textDecoration:'none'}}>Order History</Link>
-                  <NavDropdown
-                    title="Others"
-                    id={`offcanvasNavbarDropdown-expand-${expand}`}
-                  >
-                    <NavDropdown.Item href="#action4" className='effect'>
-                      Reviews 
-                    </NavDropdown.Item>
+                  <NavDropdown title="Others" id={`offcanvasNavbarDropdown-expand-${expand}`}>
+                    <Link style={{textDecoration:'none',padding:'10px'}} to="/normaluser/reviews">Reviews</Link>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5" className='effect'>
-                       Profile  
-                    </NavDropdown.Item>
+                    <Link style={{textDecoration:'none',padding:'10px'}} to="/normaluser/profile">Profile</Link>
                   </NavDropdown>
                 </Nav>
               </Offcanvas.Body>

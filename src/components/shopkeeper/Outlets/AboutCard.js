@@ -2,16 +2,18 @@ import {useEffect,useState} from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import Card from 'react-bootstrap/Card';
+import { IoIosStar } from "react-icons/io";
 import './AboutCard.css';
  const AboutCard = ()=>{  
     const [item,setitem] = useState({});
+    const [star,setstar] = useState(0);
     const Navigate = useNavigate();
     const urlSearchParams = new URLSearchParams(window.location.search);
     const data = urlSearchParams.get('data');
     const itemId = JSON.parse(decodeURIComponent(data));
     const token=sessionStorage.getItem('token');
-// fetching the data according to the item id 
-     
+
   async function fetchingData(){
     const option = {
         method: 'GET',
@@ -24,6 +26,10 @@ import './AboutCard.css';
     const  product = await response.json();
     if(response.status===200){
     setitem(product[0]);
+    const response2 = await fetch(`http://localhost:8085/rating/getproductrating/${itemId}`);
+    const rating =  await response2.json();
+    console.log("stars : ",star);
+    setstar(rating.productRating);
     }
     else{
     toast.error("Sorry Error in fetching product item");
@@ -69,6 +75,18 @@ import './AboutCard.css';
              <ToastContainer />
         <div>
             <img src={item.url} alt="product_image" />
+              <div>
+              <Card style={{maxWidth:'500px'}}>
+                 <h2> Product Rating </h2>
+                 <div>
+                    <IoIosStar style={{ color: 1 <= star ? 'yellow' : '', fontSize:'7vh'}}/>
+                    <IoIosStar style={{ color: 2 <= star ? 'yellow' : '',  fontSize:'8vh'}}/>
+                    <IoIosStar style={{ color: 3 <= star ? 'yellow' : '', fontSize:'9vh'}}/>
+                    <IoIosStar style={{ color: 4 <= star ? 'yellow' : '', fontSize:'10vh'}}/>
+                    <IoIosStar style={{ color: 5 <= star ? 'yellow' : '', fontSize:'11vh'}}/>
+                 </div>
+            </Card>
+              </div>
         </div>
         <div className="product-details">
             <div className="product-title">

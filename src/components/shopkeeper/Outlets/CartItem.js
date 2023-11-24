@@ -88,7 +88,7 @@ async function removeToCart(id){
  )):<h1 style={{ fontSize:'40px',textAlign:"center",color:"green", width:'100%'
  }}>No Product Avalilable</h1> }
 </Row>
-   <Button onClick={oreder}>Buy Products</Button>
+   { data.length > 0 ?<div style={{textAlign:"center"}}><Button  style={{width:'90vw'}}onClick={oreder}>Buy All Products</Button></div>:''}
 </div>
    )
 }

@@ -2,11 +2,13 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import ClipLoader from "react-spinners/ClipLoader";
 import { useNavigate } from 'react-router-dom';
 import { useEffect,useState } from 'react';
 const ShopProducts = ()=>{
     const Navigate = useNavigate();
     const [data,setdata]= useState([]);
+    const [loading,setloading] = useState(true);
     const token=sessionStorage.getItem('token');
 async function fetchData(){
     const options = {
@@ -19,6 +21,7 @@ async function fetchData(){
      const response = await fetch(`http://localhost:8085/product/getproducts`,options);
      const  products = await response.json();
      if(response.status===200){
+        setloading(false);
        setdata(products);
      }    
      else{
@@ -41,6 +44,28 @@ function aboutRedirect(id){
 useEffect(()=>{
     fetchData();
 })
+
+
+const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+  };
+  
+if(loading){
+    return (
+       <div>
+            <ClipLoader
+       color="#ffffff"
+       loading={loading}
+       cssOverride={override}
+       size={150}
+       aria-label="Loading Spinner"
+       data-testid="loader"
+     />
+       </div>
+    )
+  }
 
     return(
         <div className="dis_productsss">

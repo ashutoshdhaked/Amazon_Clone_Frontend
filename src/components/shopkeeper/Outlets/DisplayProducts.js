@@ -2,6 +2,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect ,useState} from "react";
@@ -9,12 +10,14 @@ import { useNavigate } from 'react-router-dom';
 import './DisplayProducts.css';
  const  DisplayProducts =()=>{
    const[data,setdata] = useState([]);  
+   const[loading,setloading] = useState(true);
    const Navigate = useNavigate();
    const userdataInStorage = sessionStorage.getItem('userdata');
    const userdata = JSON.parse(userdataInStorage);
    async function getData(){
      const response = await fetch('http://localhost:8085/product/getproducts');
      const responsedata = await response.json();
+     setloading(false);
     if(response.status===200){
         setdata(responsedata);
     }
@@ -43,11 +46,30 @@ import './DisplayProducts.css';
         toast.error('Somethings went to Wrong !!!');
     }
    }
+   const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+  };
 
     useEffect(()=>{
         getData();
     },[])
-
+    
+   if(loading){
+     return (
+        <div>
+             <ClipLoader
+        color="#ffffff"
+        loading={loading}
+        cssOverride={override}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+        </div>
+     )
+   }
 
     return(
         <div className="dis_productsss">

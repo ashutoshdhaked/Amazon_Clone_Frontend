@@ -6,6 +6,10 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 const ShopkeeperNav = ()=>{
 
+     const userinfo = sessionStorage.getItem('userdata');
+     const userdata = JSON.parse(userinfo);
+
+
    return(
     <div>
                {[false].map((expand) => (
@@ -20,35 +24,28 @@ const ShopkeeperNav = ()=>{
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                 <div className='p_section'>
-                      <img src="/images/defaultprofile.avif" alt='profile_image'  className='image_p'/>
-                      <NavDropdown title="Options" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/shopkeeper/profile">Profile</NavDropdown.Item>
-                           <NavDropdown.Item href="/shopkeeper/logout">Logout</NavDropdown.Item>
+                      <img src={userdata.profile} alt='profile_image'  className='image_p' style={{width:'50px',height:'50px'}}/>
+                      <NavDropdown title={userdata.username} id="basic-nav-dropdown">
+                           <Link style={{textDecoration:'none',padding:'10px'}} to="/shopkeeper/profile">Profile</Link>
+                           <hr></hr>
+                           <Link style={{textDecoration:'none',padding:'10px'}} to="/shopkeeper/logout">Logout</Link>
                          </NavDropdown>
                    </div>
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
+              
                 <Nav className="justify-content-end flex-grow-1 pe-3 ">
                   <Link to="/shopkeeper" className='effect' style={{textDecoration:'none'}}>Home</Link>
                   <Link to="/shopkeeper/shopproduts" className='effect' style={{textDecoration:'none'}}>Shop Products</Link>
-                  <Link to="#action2" className='effect' style={{textDecoration:'none'}}>Customers</Link>
+                  <Link to="/shopkeeper/customers" className='effect' style={{textDecoration:'none'}}>Customers</Link>
                   <Link to="/shopkeeper/cart" className='effect' style={{textDecoration:'none'}}>Cart Items</Link>
                   <Link to="/shopkeeper/addproduct" className='effect'style={{textDecoration:'none'}}>Add Product</Link>
                   <Link to="/shopkeeper/displayorder" className='effect'style={{textDecoration:'none'}}>Orders</Link>
-                  <Link to="#action2" className='effect'style={{textDecoration:'none'}}>Order History</Link>
-                  <NavDropdown
-                    title="Others"
-                    id={`offcanvasNavbarDropdown-expand-${expand}`}
-                  >
-                    <NavDropdown.Item href="#action3" className='effect'>Blocked Users</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4" className='effect'>
-                      Reviews 
-                    </NavDropdown.Item>
+                  <NavDropdown title="Others" id={`offcanvasNavbarDropdown-expand-${expand}`} >
+                  <Link style={{textDecoration:'none',padding:'10px'}} to="/shopkeeper/reviews">Reviews</Link>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5" className='effect'>
-                      Shop Profile  
-                    </NavDropdown.Item>
+                    <Link style={{textDecoration:'none',padding:'10px'}} to="/shopkeeper/profile">Profile</Link>
                   </NavDropdown>
                 </Nav>
               </Offcanvas.Body>

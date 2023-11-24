@@ -15,6 +15,9 @@ import Cartitem from './components/shopkeeper/Outlets/CartItem.js';
 import Order from './components/shopkeeper/Outlets/Order.js';
 import DisplayOrder from './components/commonpage/DisplayOrder.js';
 import Profile from './components/commonpage/Profile.js';
+import ShowCustomers from './components/shopkeeper/Outlets/ShowCustomers.js';
+import Categories from './components/normaluser/Categories.js';
+import Reviews from './components/commonpage/Reviews.js';
 import './App.css';
 
 function App() {
@@ -37,8 +40,8 @@ function App() {
           <Route path="order" element={<Order/>}></Route>
           <Route path="displayorder" element={<DisplayOrder/>}></Route> 
           <Route path="profile" element={<Profile/>}></Route>
-         {/*<Route path="/userprofile" element={""}></Route> 
-          <Route path="/addproduct" element={""}></Route> */}
+          <Route path="customers" element={<ShowCustomers/>}></Route> 
+          <Route path="reviews" element={<Reviews/>}></Route>
           <Route path="logout" element={<Logout/>}></Route>  
       </Route>
 
@@ -49,10 +52,8 @@ function App() {
           <Route path="order" element={<Order/>}></Route>
           <Route path="displayorder" element={<DisplayOrder/>}></Route>
           <Route path="profile" element={<Profile/>}></Route>
-          {/* <Route path="/products" element={""}></Route>
-          <Route path="/normaluserprofile" element={""}></Route>
-          <Route path="/aboutproduct" element={""}></Route>
-          <Route path="/buyproduct" element={""}></Route> */}
+          <Route path="categories" element={<Categories/>}></Route>
+          <Route path="reviews" element={<Reviews/>}></Route>
           <Route path="logout" element={<Logout/>}></Route>
       </Route>
 

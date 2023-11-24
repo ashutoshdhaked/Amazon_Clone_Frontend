@@ -4,11 +4,13 @@ import {Navigate} from 'react-router-dom';
 import React,{useState} from 'react';
 const SignUp = ()=>{
     const startingState = {
+        profile:"/images/defaultprofile.avif",
         name:"",
         username:"",
         email:"",
         phone:"",
-        usertype:""
+        usertype:"",
+        about:""
     }
    const [data ,setdata] = useState(startingState);
    const [error,seterror] = useState('');
