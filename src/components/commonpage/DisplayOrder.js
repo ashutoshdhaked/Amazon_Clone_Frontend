@@ -104,7 +104,7 @@ const DisplayOrder = ()=>{
 
     return( 
             <>
-    { items.map((data,i)=>{  
+    {items.length>0?  items.map((data,i)=>{  
       return (
         <div style={{margin:'20px', backgroundColor:'#000',padding:'20px',color:'#fff'}}>
             <div>
@@ -153,7 +153,13 @@ const DisplayOrder = ()=>{
     </div>
 
         </div>
-)})}
+)})
+ : <div style={{textAlign:'center', color:'gray',fontSize:'30px'}}>
+   <div>
+   No Any Ordered Item Is Available 
+   </div>
+   </div>
+}
         </>
     )
 }

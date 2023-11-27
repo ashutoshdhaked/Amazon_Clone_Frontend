@@ -29,7 +29,6 @@ function NavBar(){
                  </div>
                  <div className="cart_btn">
                        <div className='cart_icon'>
-                        <p className='item_num'>4</p>
                          <MdOutlineShoppingCart id='cart'/>
                       </div>
                       <p>Cart</p>

@@ -31,8 +31,11 @@
     font-size: 20px;
 }
 .serach_icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: orange;
-    height: 30.5px;
+    height: 33px;
     padding: 3px;
     font-size: 25px;
     border-bottom-right-radius: 5px;
@@ -43,12 +46,13 @@
     height: 60px;
 }
 .right{
-     width: 20%;
+    
     display: flex;
-    margin-right: 50px;
+     gap: 20px;
     justify-content: space-between;
     align-items: center;
     color: #ffff;
+    margin-right: 10px;
 }
 
 .nav_btn a {

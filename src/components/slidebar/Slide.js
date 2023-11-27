@@ -2,11 +2,19 @@ import React, { useState,useEffect } from 'react';
 import './Slide.css';
 const Slide = ()=>{
     const [data,setdata] = useState([]);
+    const [loading,setloading] = useState(true);
     const fetchData = async()=>{
       try{
         const response = await fetch('http://localhost:8085/product/getproducts');
         const responsedata = await response.json();
-        setdata(responsedata);
+        const arr = new Array(5);
+        arr.push(responsedata[0]);
+        arr.push(responsedata[1]);
+        arr.push(responsedata[2]);
+        arr.push(responsedata[3]);
+        arr.push(responsedata[4]);
+        setdata(arr);
+        setloading(false);
       }
       catch(e){
         console.log("Error whne fetching the data");
@@ -15,6 +23,15 @@ const Slide = ()=>{
      useEffect(()=>{
         fetchData();
      },[])
+
+    if(loading){
+      return(
+        <div>
+           products are loading .....
+        </div>
+      )
+    } 
+
 
     return(
         <div className='box'>
@@ -28,11 +45,14 @@ const Slide = ()=>{
         <div className='carousel_item'> 
         { (data.length!== 0) ?data.map((item,index)=>{
             return(
+              <div>{ item ?
          <div key={index} className='carousel_data'>
           <img src={item.url} alt={`image :+${item.url}`}/>
-          <h3>{item.shorttitle}</h3>
+          <h4>{item.shorttitle}</h4>
           <p>{item.longtitle}</p>
          </div>
+          : '' }
+            </div>  
         )})
           :''}
         </div>

@@ -40,8 +40,8 @@
 }
 
 .carousel_data{
-    width: 150px;
-    height: 300px;
+    width: 200px;
+    height: 350px;
     display: flex;
     flex-direction: column;
     gap: 10px;

@@ -147,7 +147,6 @@ const DisplayOrderToNormal = (props)=>{
       </tbody>
     </Table>
     </div>
-
         </div>
         
 )})

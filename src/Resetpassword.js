@@ -12,8 +12,8 @@ function ResetPassword(){
     const token = urlSearchParams.get('token');
   
     async function savePassword(){
-         const data = {
-      Password : Password,
+      const data = {
+      password : Password,
       token : token
        };
       const option ={
@@ -23,6 +23,7 @@ function ResetPassword(){
         },
         body: JSON.stringify(data), 
         };
+        console.log("data is like : ",data);
         console.log("token : "+token);
         const user = await fetch('http://localhost:8085/user/updatepassword',option);
         if(user.status===200){

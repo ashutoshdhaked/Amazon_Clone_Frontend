@@ -67,7 +67,8 @@ catch(error){
 
     function changeImage(){
     if(!image){ toast.error("Please Select A Image To Change Profile !! ") }
-    else{sendImage();}
+    else{
+      sendImage();}
   }
     return(
         <div style={{width:"30%"}}>

@@ -1,4 +1,4 @@
- import './NormalUserNav.css';
+import './NormalUserNav.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -36,7 +36,7 @@ const NormaluserNav = ()=>{
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3 ">
                   <Link to="/normaluser" className='effect' style={{textDecoration:'none'}}>Home</Link>
-                  <Link to="/normaluser/categories" className='effect' style={{textDecoration:'none'}}>Categories</Link>
+                  {/* <Link to="/normaluser/categories" className='effect' style={{textDecoration:'none'}}>Categories</Link> */}
                   <Link to="/normaluser/displayorder" className='effect'style={{textDecoration:'none'}}>Orders</Link>
                   <Link to="/normaluser/cart" className='effect' style={{textDecoration:'none'}}>CartItems</Link>
                   <NavDropdown title="Others" id={`offcanvasNavbarDropdown-expand-${expand}`}>

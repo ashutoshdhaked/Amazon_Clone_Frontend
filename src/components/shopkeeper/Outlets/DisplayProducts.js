@@ -85,7 +85,7 @@ import './DisplayProducts.css';
                             <Card.Title>{item.shorttitle}</Card.Title>
                             <Card.Text className="mb-4" style={{ height: '50px', overflow: 'hidden' }} >{item.longtitle}</Card.Text>
                             <div className="mb-4" style={{display :'flex',fontSize :'15px',color:'blue',alignItems:'center',gap:'5px', justifyContent:'space-around'}}>
-                            <div style={{width :'70px', height:'auto'}}> MRP: <br></br><strike> </strike></div>
+                            <div style={{width :'70px', height:'auto'}}> MRP: <br></br><strike>{item.mrp}</strike></div>
                             <div style={{width :'70px', height:'auto'}}> Discount:<br></br>{item.discount}%</div>
                             <div style={{width :'70px', height:'auto'}}>cost:<br></br>{item.cost}</div>
                             </div>
