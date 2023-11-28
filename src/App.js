@@ -18,6 +18,7 @@ import Profile from './components/commonpage/Profile.js';
 import ShowCustomers from './components/shopkeeper/Outlets/ShowCustomers.js';
 import Categories from './components/normaluser/Categories.js';
 import Reviews from './components/commonpage/Reviews.js';
+import AddCategory from './components/shopkeeper/Outlets/AddCategory.js';
 import './App.css';
 
 function App() {
@@ -42,7 +43,10 @@ function App() {
           <Route path="profile" element={<Profile/>}></Route>
           <Route path="customers" element={<ShowCustomers/>}></Route> 
           <Route path="reviews" element={<Reviews/>}></Route>
+          <Route path="addcategory" element={<AddCategory/>}></Route>
           <Route path="logout" element={<Logout/>}></Route>  
+
+
       </Route>
 
       <Route path="/normaluser" element={<Normaluser/>}>

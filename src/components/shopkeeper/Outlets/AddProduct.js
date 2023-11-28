@@ -10,12 +10,7 @@ const AddProduct = ({ placeholder })=>{
     const editor = useRef(null);
 	const [content, setContent] = useState('');
     const [content2, setContent2] = useState('');
-    const [data,setdata] = useState({
-    });
-    // const config ={
-	// 		readonly: false, 
-	// 		placeholder: placeholder || 'Start typings...'
-	// 	}
+    const [data,setdata] = useState({});
 
   function  handleInputChange(e){
     const { name, value } = e.target;
@@ -37,8 +32,8 @@ const AddProduct = ({ placeholder })=>{
     }
      const response = await fetch('http://localhost:8085/product/saveproducts',option);
      if(response.status===200){
-        await toast.success("Your Item is successfully saved");
-         Navigate('/shopkeeper/shopproducts');
+         toast.success("Your Item is successfully saved");
+         Navigate('/shopkeeper/shopproduts');
      }
      else{
            toast.error("your Product is not saved !!");
@@ -85,10 +80,9 @@ const AddProduct = ({ placeholder })=>{
         <JoditEditor
 			ref={editor}
 			value={content}
-            // config={config}
 			tabIndex={1} 
 			onBlur={newContent => setContent(newContent)} 
-			onChange={newContent => {handleInputChange({ target: { name: 'detail', value: newContent } })}}
+			onChange={newContent => {handleInputChange({ target: { name: 'detail', value: newContent }})}}
           />
           </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
@@ -96,7 +90,6 @@ const AddProduct = ({ placeholder })=>{
         <JoditEditor
 			ref={editor}
 			value={content2}
-            // config={config}
 			tabIndex={1} 
 			onBlur={newContent2 => setContent2(newContent2)} 
 			onChange={newContent2 => {handleInputChange({ target: { name: 'description', value: newContent2 } })}}    

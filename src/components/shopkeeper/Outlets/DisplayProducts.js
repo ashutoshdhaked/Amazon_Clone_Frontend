@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect ,useState} from "react";
 import { useNavigate } from 'react-router-dom';
+import Searchbar from '../../commonpage/Searchbar';
 import './DisplayProducts.css';
  const  DisplayProducts =()=>{
    const[data,setdata] = useState([]);  
@@ -52,6 +53,10 @@ import './DisplayProducts.css';
     borderColor: "red",
   };
 
+   function changedata(newdata){
+    setdata(newdata);
+   }
+
     useEffect(()=>{
         getData();
     },[])
@@ -59,7 +64,7 @@ import './DisplayProducts.css';
    if(loading){
      return (
         <div>
-             <ClipLoader
+        <ClipLoader
         color="#ffffff"
         loading={loading}
         cssOverride={override}
@@ -74,8 +79,13 @@ import './DisplayProducts.css';
     return(
         <div className="dis_productsss">
             <ToastContainer/>
+            <div style={{margin:'2%', display:'flex',justifyContent:'center'}}>
+            <Card style={{width:'50%'}}> 
+            <Searchbar productdata={data}  changeData={changedata}/>
+           </Card>
+           </div>
             <Row xs={1} md={4} className="g-4">
-                { (data.length !== 0) ? data.map((item, index) => (
+                { (data.length >0) ? data.map((item, index) => (
                     <Col key={index}>
                         <Card className="mb-4">
                             <div className='image_box'>

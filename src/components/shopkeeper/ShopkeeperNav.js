@@ -42,6 +42,7 @@ const ShopkeeperNav = ()=>{
                   <Link to="/shopkeeper/cart" className='effect' style={{textDecoration:'none'}}>Cart Items</Link>
                   <Link to="/shopkeeper/addproduct" className='effect'style={{textDecoration:'none'}}>Add Product</Link>
                   <Link to="/shopkeeper/displayorder" className='effect'style={{textDecoration:'none'}}>Orders</Link>
+                  <Link to="/shopkeeper/addcategory" className='effect'style={{textDecoration:'none'}}>Add Category</Link>
                   <NavDropdown title="Others" id={`offcanvasNavbarDropdown-expand-${expand}`} >
                   <Link style={{textDecoration:'none',padding:'10px'}} to="/shopkeeper/reviews">Reviews</Link>
                     <NavDropdown.Divider />

@@ -74,7 +74,7 @@ const Login = ()=>{
                          <button className='loginbtn' type='submit'>Login</button>
                      </form>
                      <hr></hr>
-                     <div className='option'>
+                     {/* <div className='option'>
                      <a href="/forgotpassword" >forgot password</a>
                      <button>
                         <FcGoogle className='icon'/>
@@ -84,7 +84,7 @@ const Login = ()=>{
                         <SiFacebook className='icon_f'/>
                          Sign Up With Facebook
                      </button>
-                     </div>
+                     </div> */}
                 </div>
               </div>
               </div>

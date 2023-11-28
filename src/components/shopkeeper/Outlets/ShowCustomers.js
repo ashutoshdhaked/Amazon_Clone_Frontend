@@ -21,7 +21,7 @@ const ShowCustomers =()=>{
  const dataOfUser = JSON.parse(userinfo);
  const usersData =[];
   async function getDataFormDb(){
-     const allCustomerIddata = await fetch('http://localhost:8085/order/getcustomerid');
+     const allCustomerIddata = await fetch(`http://localhost:8085/order/getcustomerid/${dataOfUser.id}`);
      const allId = await allCustomerIddata.json();
      for(let i of allId){
          const AllUserData = await fetch(`http://localhost:8085/user/getuserbyid/${i}`);
@@ -136,7 +136,7 @@ else{
         <div>
          <ToastContainer/>
             <Row>
-         {   clients.map((items,index)=>{
+         { clients.length>0?clients.map((items,index)=>{
             return(
                 <div style={{padding:'2%'}} key={index}>
                 <Card>
@@ -165,7 +165,14 @@ else{
              </Card>
              </div>
             )
-         })}
+         })
+           :
+           <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+            <div>
+              <h2>No Any Customer Here</h2>
+             </div>
+            </div>
+         }
           </Row>
           <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
