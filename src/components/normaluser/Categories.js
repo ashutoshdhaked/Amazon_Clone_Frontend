@@ -36,7 +36,8 @@ const Categories =()=>{
             </div>
         )
     }
-
+    console.log("category :",category);
+    
     console.log("msg : ",msg);
     return(
         <div>

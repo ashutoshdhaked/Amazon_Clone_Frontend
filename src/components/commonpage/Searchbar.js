@@ -30,9 +30,7 @@ const Searchbar = ({productdata,changeData})=>{
             toast.error("you searched empty field !!");
             changeData(products);
       }
-      
    }
-
     return (
          <div style={{width:'100%'}}>
             <ToastContainer/>

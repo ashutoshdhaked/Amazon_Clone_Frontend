@@ -46,12 +46,16 @@
         flex-direction: column;
         gap: 10px;
         background-color: aliceblue;
+        cursor: pointer;
+}
+.for_btn:hover{
+    color: red;
 }
 .option button{
     margin: 10px;
     padding: 3px;
 }
-.option a:hover{
+.option button:hover{
     color: red;
 }
 .icon{

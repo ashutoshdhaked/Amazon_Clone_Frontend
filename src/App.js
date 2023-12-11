@@ -19,6 +19,8 @@ import ShowCustomers from './components/shopkeeper/Outlets/ShowCustomers.js';
 import Categories from './components/normaluser/Categories.js';
 import Reviews from './components/commonpage/Reviews.js';
 import AddCategory from './components/shopkeeper/Outlets/AddCategory.js';
+import SocketClient from './components/commonpage/SocketClient.js';
+import SocketShop from './components/commonpage/SocketShop.js';
 import './App.css';
 
 function App() {
@@ -45,8 +47,7 @@ function App() {
           <Route path="reviews" element={<Reviews/>}></Route>
           <Route path="addcategory" element={<AddCategory/>}></Route>
           <Route path="logout" element={<Logout/>}></Route>  
-
-
+          <Route path="socketshop" element={<SocketShop/>}></Route>
       </Route>
 
       <Route path="/normaluser" element={<Normaluser/>}>
@@ -59,6 +60,7 @@ function App() {
           <Route path="categories" element={<Categories/>}></Route>
           <Route path="reviews" element={<Reviews/>}></Route>
           <Route path="logout" element={<Logout/>}></Route>
+          <Route path="socketclient" element={<SocketClient/>}></Route>
       </Route>
 
       <Route path="/ResetPassword" element={<ResetPassword/>}></Route>

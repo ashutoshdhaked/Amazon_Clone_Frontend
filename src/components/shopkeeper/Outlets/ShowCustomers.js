@@ -9,6 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import { useNavigate } from 'react-router-dom';
 const ShowCustomers =()=>{
  const [clients,setclients] = useState([{}]);
  const [loading,setloading] = useState(true);
@@ -16,7 +17,7 @@ const ShowCustomers =()=>{
  const [orderdata,setorderdata] = useState({});
  const [fullscreen, setFullscreen] = useState(true);
  const [show, setShow] = useState(false);
-
+ const Navigate = useNavigate();
  const userinfo = sessionStorage.getItem('userdata');
  const dataOfUser = JSON.parse(userinfo);
  const usersData =[];
@@ -119,6 +120,13 @@ else{
 
 }
 
+function chatClient(userId){
+  if(dataOfUser.usertype==='shopkeeper'){
+    Navigate(`/shopkeeper/socketshop?id=${userId}`);
+  }
+
+}
+
 
  useEffect(()=>{
     getDataFormDb();
@@ -160,6 +168,7 @@ else{
                 <div>
                 <Button variant="secondary" onClick={()=>{rateUser(items.data._id)}}>Rate user</Button>&nbsp;&nbsp;
                 <Button variant="secondary" onClick={()=>{viewOrders(items.data._id)}}>View Orders</Button>
+                <Button variant='secondary' onClick={()=>{chatClient(items.data._id)}}>Chat Client</Button>
                 </div>
                 </div>
              </Card>

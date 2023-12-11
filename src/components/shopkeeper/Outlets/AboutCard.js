@@ -8,11 +8,15 @@ import './AboutCard.css';
  const AboutCard = ()=>{  
     const [item,setitem] = useState({});
     const [star,setstar] = useState(0);
+    const [updating,setupdating] = useState(false);
     const Navigate = useNavigate();
     const urlSearchParams = new URLSearchParams(window.location.search);
     const data = urlSearchParams.get('data');
     const itemId = JSON.parse(decodeURIComponent(data));
     const token=sessionStorage.getItem('token');
+    const userinfo = sessionStorage.getItem('userdata');
+    const userdata = JSON.parse(userinfo);
+  
 
   async function fetchingData(){
     const option = {
@@ -25,6 +29,9 @@ import './AboutCard.css';
     const response = await fetch(`http://localhost:8085/product/getproductbyid/${itemId}`,option);
     const  product = await response.json();
     if(response.status===200){
+      if(product[0].shopid===userdata.id){
+         setupdating(true);
+      }
     setitem(product[0]);
     const response2 = await fetch(`http://localhost:8085/rating/getproductrating/${itemId}`);
     const rating =  await response2.json();
@@ -54,10 +61,19 @@ import './AboutCard.css';
   }
   else if(checkitemexist===false){
    items.push(item);
-  await localStorage.setItem('cartitem',JSON.stringify(items));
+   await localStorage.setItem('cartitem',JSON.stringify(items));
    toast.success("item successfully added in your cart !!");
   }
+  }
 
+  function ChatWithUser(shopid){
+    if(userdata.usertype==='normaluser'){
+    Navigate(`/normaluser/socketclient?id=${shopid}`);
+    }
+  }
+
+  function updateProduct(){
+    Navigate(`/shopkeeper/addproduct?id=${encodeURIComponent(item._id)}`);  
   }
 
   function order(id){
@@ -103,7 +119,9 @@ import './AboutCard.css';
             <div className="product-description" dangerouslySetInnerHTML={{ __html: item.description }}></div>
             <div className='buy_btn'>
                 <button onClick={()=>{order(item._id)}}>Buy Now</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                 <button onClick={addCart}>Add Cart</button>
+                 <button onClick={addCart}>Add Cart</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                  {userdata.usertype==='normaluser'?<button  onClick={()=>{ChatWithUser(item.shopid)}}>Chat With Shopkeeper</button>:''}&nbsp;&nbsp;&nbsp;&nbsp;
+                 {updating ? <button  onClick={updateProduct}>Update Product</button> :''}
             </div>
         </div>
     </div>
