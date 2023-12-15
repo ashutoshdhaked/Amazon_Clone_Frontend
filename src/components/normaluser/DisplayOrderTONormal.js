@@ -43,7 +43,7 @@ const DisplayOrderToNormal = (props)=>{
       body : JSON.stringify(senddata),
     }
   console.log("sending data : ",senddata);
-    const response = await fetch('http://localhost:8085/rating/saveproductrating',options);
+    const response = await fetch('https://amazonebackend.onrender.com/rating/saveproductrating',options);
     if(response.status===200){
        toast.success("Sucessfully Stored Your Rating !!");
     }

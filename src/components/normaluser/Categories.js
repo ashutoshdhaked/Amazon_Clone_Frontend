@@ -10,7 +10,7 @@ const Categories =()=>{
     const [modalShow, setModalShow] = useState(false);
     const [msg,setmsg]= useState('');
    async function fetchCategory(){
-    const response = await fetch('http://localhost:8085/product/getallcategory');
+    const response = await fetch('https://amazonebackend.onrender.com/product/getallcategory');
     if(response.status===200){
         const data = await response.json();
         setcategory(data);

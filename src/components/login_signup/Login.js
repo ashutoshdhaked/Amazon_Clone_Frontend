@@ -43,7 +43,7 @@ const Login = ()=>{
       },
       body : JSON.stringify({email : Email})
      }    
-     const response = await fetch('http://localhost:8085/user/emailexist',option); 
+     const response = await fetch('https://amazonebackend.onrender.com/user/emailexist',option); 
      setloading(false); 
     if(response.status===200){
      setEmail('');
@@ -74,7 +74,7 @@ const Login = ()=>{
       },
       body: JSON.stringify(data)
     }
-    const response = await fetch('http://localhost:8085/user/loginuser',option);
+    const response = await fetch('https://amazonebackend.onrender.com/user/loginuser',option);
     const user = await response.json();
     if(response.status===200){
        const  token  = user.token;

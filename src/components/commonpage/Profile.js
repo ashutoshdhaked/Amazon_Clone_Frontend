@@ -10,7 +10,7 @@ const Profile = ()=>{
   const data = sessionStorage.getItem('userdata');
   const userdata = JSON.parse(data);
   async function getDetails(){
-      const userinfo = await fetch(`http://localhost:8085/user/getuserbyid/${userdata.id}`);
+      const userinfo = await fetch(`https://amazonebackend.onrender.com/user/getuserbyid/${userdata.id}`);
     const jsondata =  await userinfo.json(); 
       setuser(jsondata[0]);
   }

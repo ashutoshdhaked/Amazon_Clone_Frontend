@@ -18,7 +18,7 @@ async function fetchData(){
             'Authorization': `Bearer ${token}`
         }
     };
-     const response = await fetch(`http://localhost:8085/product/getuserproducts`,options);
+     const response = await fetch(`https://amazonebackend.onrender.com/product/getuserproducts`,options);
      const  products = await response.json();
      if(response.status===200){
         setloading(false);

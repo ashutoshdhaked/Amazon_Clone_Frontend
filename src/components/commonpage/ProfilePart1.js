@@ -31,7 +31,7 @@ const ProfilePart1 = (props)=>{
    }
   try{
   setLoading(true);
-  const response =  await fetch('http://localhost:8085/user/uploadimage',options);
+  const response =  await fetch('https://amazonebackend.onrender.com/user/uploadimage',options);
   if(response.status===200){
     toast.success("successfully changed image");
     setLoading(false);
@@ -44,7 +44,7 @@ const ProfilePart1 = (props)=>{
     },
     body: JSON.stringify({profile:updateddata}),
    }
-   const response2 = await fetch(`http://localhost:8085/user/updateimage/${userdata.id}`,option);
+   const response2 = await fetch(`https://amazonebackend.onrender.com/user/updateimage/${userdata.id}`,option);
    if(response2.status===200){
       const updatedResponse = await response2.json();
       setUserProfile(updatedResponse.profile);

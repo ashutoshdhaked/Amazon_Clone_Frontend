@@ -25,7 +25,7 @@ function ResetPassword(){
         };
         console.log("data is like : ",data);
         console.log("token : "+token);
-        const user = await fetch('http://localhost:8085/user/updatepassword',option);
+        const user = await fetch('https://amazonebackend.onrender.com/user/updatepassword',option);
         if(user.status===200){
          toast.success("Your password is successfully changed");
          Navigate("/login");

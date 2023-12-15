@@ -10,7 +10,7 @@ const Reviews = ()=>{
 
  async function getInfo(){  
    if(userdata.usertype==='normaluser'){
-     const response =  await fetch(`http://localhost:8085/rating/getrating/${userdata.id}`);
+     const response =  await fetch(`https://amazonebackend.onrender.com/rating/getrating/${userdata.id}`);
      if(response.status===200){
         const data = await response.json();
         await setrate(data.averageRating);
@@ -18,7 +18,7 @@ const Reviews = ()=>{
      }
    }
    else if(userdata.usertype==='shopkeeper'){
-    const response =  await fetch(`http://localhost:8085/rating/getratingofshopkeeper/${userdata.id}`);
+    const response =  await fetch(`https://amazonebackend.onrender.com/rating/getratingofshopkeeper/${userdata.id}`);
     if(response.status===200){
        const data = await response.json();
        console.log("data rating : ",data.shopRating);

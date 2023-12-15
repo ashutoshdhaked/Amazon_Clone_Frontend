@@ -16,7 +16,7 @@ const SocketClient = ()=>{
   const userinfo = sessionStorage.getItem('userdata');
   const userdata = JSON.parse(userinfo);
   const [senderId,setsenderId] = useState(userdata.id);
-  const serverUrl = 'http://localhost:8085';
+  const serverUrl = 'https://amazonebackend.onrender.com';
   const socket = io(serverUrl);
 
   useEffect(() => {
@@ -143,7 +143,7 @@ function findCurrentSender(id){
 
 async function getDataFromDb(id){
   try{
- const response = await fetch(`http://localhost:8085/user/getuserbyid/${id}`);
+ const response = await fetch(`https://amazonebackend.onrender.com/user/getuserbyid/${id}`);
  if(response.status===200){
   const  userdata = await response.json();
   const data = {profile : userdata[0].profile , name : userdata[0].name , email : userdata[0].email, id: userdata[0]._id };

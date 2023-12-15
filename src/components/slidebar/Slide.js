@@ -5,7 +5,7 @@ const Slide = ()=>{
     const [loading,setloading] = useState(true);
     const fetchData = async()=>{
       try{
-        const response = await fetch('http://localhost:8085/product/getproducts');
+        const response = await fetch('https://amazonebackend.onrender.com/product/getproducts');
         const responsedata = await response.json();
         const arr = new Array(5);
         arr.push(responsedata[0]);

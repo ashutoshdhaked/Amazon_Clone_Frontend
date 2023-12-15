@@ -21,7 +21,7 @@ const DisplayOrder = ()=>{
      
   async function fetchOrders(){
         if(userdata.usertype==='shopkeeper'){
-         const response = await fetch(`http://localhost:8085/order/getpendingorder/${userdata.id}`); 
+         const response = await fetch(`https://amazonebackend.onrender.com/order/getpendingorder/${userdata.id}`); 
          if(response.status===200){
           const oreders = await response.json();
           setitems(oreders);
@@ -29,7 +29,7 @@ const DisplayOrder = ()=>{
          }    
         }
       else if(userdata.usertype==='normaluser'){
-        const response = await fetch(`http://localhost:8085/order/getuserorders/${userdata.id}`); 
+        const response = await fetch(`https://amazonebackend.onrender.com/order/getuserorders/${userdata.id}`); 
         if(response.status===200){
          const oreders = await response.json();
            setitemsOfNormal(oreders);
@@ -72,7 +72,7 @@ const DisplayOrder = ()=>{
     }
 
     console.log("id and status : ",id ,statusValue);
-   const response =  await fetch(`http://localhost:8085/order/updatestatus/${id}`,option);
+   const response =  await fetch(`https://amazonebackend.onrender.com/order/updatestatus/${id}`,option);
    if(response.status===200){
      toast.success("your have confirm the oreder");
    }

@@ -20,7 +20,7 @@ function Shopkeeper() {
             },
             body :JSON.stringify({})
         };
-        const response = await fetch('http://localhost:8085/userportal/home', options);
+        const response = await fetch('https://amazonebackend.onrender.com/userportal/home', options);
         const userType = await response.json();
         if (userType !== 'shopkeeper') {
             setIsError(true);

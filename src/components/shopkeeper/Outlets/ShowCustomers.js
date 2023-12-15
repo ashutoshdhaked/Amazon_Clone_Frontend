@@ -22,11 +22,11 @@ const ShowCustomers =()=>{
  const dataOfUser = JSON.parse(userinfo);
  const usersData =[];
   async function getDataFormDb(){
-     const allCustomerIddata = await fetch(`http://localhost:8085/order/getcustomerid/${dataOfUser.id}`);
+     const allCustomerIddata = await fetch(`https://amazonebackend.onrender.com/order/getcustomerid/${dataOfUser.id}`);
      const allId = await allCustomerIddata.json();
      for(let i of allId){
-         const AllUserData = await fetch(`http://localhost:8085/user/getuserbyid/${i}`);
-         const getRates = await fetch(`http://localhost:8085/rating/getrating/${i}`);
+         const AllUserData = await fetch(`https://amazonebackend.onrender.com/user/getuserbyid/${i}`);
+         const getRates = await fetch(`https://amazonebackend.onrender.com/rating/getrating/${i}`);
          const rates = await getRates.json();
          const  rating = await rates;
          const data = await  AllUserData.json();
@@ -50,7 +50,7 @@ const ShowCustomers =()=>{
       body : JSON.stringify(senddata),
     }
   console.log("sending data : ",senddata);
-    const response = await fetch('http://localhost:8085/rating/saverating',options);
+    const response = await fetch('https://amazonebackend.onrender.com/rating/saverating',options);
     if(response.status===200){
        toast.success("Sucessfully Stored Your Rating !!");
     }
@@ -96,7 +96,7 @@ async function viewOrders(userid){
 // here we are fetching the order which is ordered by this userid 
 setFullscreen(true);
 setShow(true);
-const response = await fetch(`http://localhost:8085/order/getuserorders/${userid}`);
+const response = await fetch(`https://amazonebackend.onrender.com/order/getuserorders/${userid}`);
 if(response.status ===200){
    const responsedata = await response.json();
     const arr =[];

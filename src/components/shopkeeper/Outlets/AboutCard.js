@@ -26,14 +26,14 @@ import './AboutCard.css';
             'Authorization': `Bearer ${token}`
         }
     };
-    const response = await fetch(`http://localhost:8085/product/getproductbyid/${itemId}`,option);
+    const response = await fetch(`https://amazonebackend.onrender.com/product/getproductbyid/${itemId}`,option);
     const  product = await response.json();
     if(response.status===200){
       if(product[0].shopid===userdata.id){
          setupdating(true);
       }
     setitem(product[0]);
-    const response2 = await fetch(`http://localhost:8085/rating/getproductrating/${itemId}`);
+    const response2 = await fetch(`https://amazonebackend.onrender.com/rating/getproductrating/${itemId}`);
     const rating =  await response2.json();
     console.log("stars : ",star);
     setstar(rating.productRating);

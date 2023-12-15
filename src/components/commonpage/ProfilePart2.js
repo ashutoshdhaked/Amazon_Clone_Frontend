@@ -38,7 +38,7 @@ const ProfilePart2 = ({userdata,updatefromChild})=>{
       },
       body:JSON.stringify(data)
      } 
-     const response = await fetch(`http://localhost:8085/user/updateuser/${loginuserdata.id}`,option);
+     const response = await fetch(`https://amazonebackend.onrender.com/user/updateuser/${loginuserdata.id}`,option);
      if(response.status===200){
        toast.success("you have successfully updated profile");
        const updatedinfo = await response.json();

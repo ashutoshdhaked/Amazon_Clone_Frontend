@@ -37,7 +37,7 @@ function Order (){
             'Authorization': `Bearer ${token}`
         }
     };
-    const response = await fetch(`http://localhost:8085/product/getproductbyid/${itemId}`,option);
+    const response = await fetch(`https://amazonebackend.onrender.com/product/getproductbyid/${itemId}`,option);
     const product = await response.json();
     if(response.status===200){
        setitems(product);
@@ -110,7 +110,7 @@ async function storeOrder(){
     },
     body: JSON.stringify(arr), 
    }
-   const response = await fetch('http://localhost:8085/order/saveorder',option);
+   const response = await fetch('https://amazonebackend.onrender.com/order/saveorder',option);
    if(response.status === 200){
        const responsedata = await response.json();
        toast.success("your have successfully Ordered !! "+responsedata.createdAt);

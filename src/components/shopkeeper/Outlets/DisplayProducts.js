@@ -16,7 +16,7 @@ import './DisplayProducts.css';
    const userdataInStorage = sessionStorage.getItem('userdata');
    const userdata = JSON.parse(userdataInStorage);
    async function getData(){
-     const response = await fetch('http://localhost:8085/product/getproducts');
+     const response = await fetch('https://amazonebackend.onrender.com/product/getproducts');
      const responsedata = await response.json();
      setloading(false);
     if(response.status===200){

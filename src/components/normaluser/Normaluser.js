@@ -19,7 +19,7 @@ function Normaluser(){
           'Authorization' :`Bearer ${token}`
              }
        }
-    const response2 = await fetch('http://localhost:8085/userportal/home',option2);
+    const response2 = await fetch('https://amazonebackend.onrender.com/userportal/home',option2);
     const usertype =  await response2.json();
       if(usertype!=='normaluser'){
         setIsError(true);

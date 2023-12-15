@@ -27,7 +27,7 @@ const AddProduct = ({ placeholder })=>{
             'Authorization': `Bearer ${usertoken}`
           }
        }
-       const response =  await fetch(`http://localhost:8085/product/getproductbyid/${itemId}`,option); 
+       const response =  await fetch(`https://amazonebackend.onrender.com/product/getproductbyid/${itemId}`,option); 
        if(response.status===200){
            const itemdata = await response.json();
           // seetting the data according to the fields : 
@@ -38,7 +38,7 @@ const AddProduct = ({ placeholder })=>{
     }
 
    async function getAllCategory(){
-         const response = await fetch('http://localhost:8085/product/getallcategory');
+         const response = await fetch('https://amazonebackend.onrender.com/product/getallcategory');
           if(response.status===200){
             const iddata = await response.json();
             console.log("id and data is like as : ",iddata);
@@ -74,7 +74,7 @@ const AddProduct = ({ placeholder })=>{
         },
         body : JSON.stringify(data),  
     }
-     const response = await fetch('http://localhost:8085/product/saveproducts',option);
+     const response = await fetch('https://amazonebackend.onrender.com/product/saveproducts',option);
      setloading(false);
        if(response.status===200){
          toast.success("Your Item is successfully saved");
@@ -94,7 +94,7 @@ const AddProduct = ({ placeholder })=>{
           },
           body : JSON.stringify(data),  
       }
-      const response = await fetch(`http://localhost:8085/product/updateproduct/${itemId}`,option);
+      const response = await fetch(`https://amazonebackend.onrender.com/product/updateproduct/${itemId}`,option);
       setloading(false);
        if(response.status===200){
            toast.success("Your Item is successfully saved");

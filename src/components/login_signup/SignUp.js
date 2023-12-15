@@ -47,7 +47,7 @@ const SignUp = ()=>{
         },
         body: JSON.stringify(data), 
       };
-      const response = await fetch('http://localhost:8085/user/saveuser',options);
+      const response = await fetch('https://amazonebackend.onrender.com/user/saveuser',options);
       if(response.status === 409){
         setsignerror(" User email is already exist !!");
         setShow(true);

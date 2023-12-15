@@ -60,7 +60,7 @@ async function storeDb(formdata){
       },
       body:formdata,
   }
-  const response = await fetch('http://localhost:8085/product/savecategory',option);
+  const response = await fetch('https://amazonebackend.onrender.com/product/savecategory',option);
   if(response.status===200){
      toast.success("you have successfully added a new category");
      setloading(false);
